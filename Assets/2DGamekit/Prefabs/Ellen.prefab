@@ -162,13 +162,7 @@ GameObject:
   - component: {fileID: 95245875792028280}
   - component: {fileID: 70340845508230026}
   - component: {fileID: 50735333045448606}
-  - component: {fileID: 114591936569520678}
-  - component: {fileID: 114734347468151670}
-  - component: {fileID: 114854669915511232}
-  - component: {fileID: 114774311958850474}
-  - component: {fileID: 114460243114916098}
-  - component: {fileID: 114680495344679792}
-  - component: {fileID: 114621962236214084}
+  - component: {fileID: 815457208960654371}
   m_Layer: 13
   m_Name: Ellen
   m_TagString: Untagged
@@ -303,13 +297,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 9.81
   m_Material: {fileID: 6200000, guid: c325d97ce27776645bad5015a39d864d, type: 2}
   m_Interpolate: 2
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &114591936569520678
+--- !u!114 &815457208960654371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,353 +312,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1125256590603436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9630ef9434df4048aafe7bffcc5bc1a, type: 3}
+  m_Script: {fileID: 11500000, guid: b03dbce0234f0284cb8c09506bbf7f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundedLayerMask:
-    serializedVersion: 2
-    m_Bits: 2147549184
-  groundedRaycastDistance: 0.1
---- !u!114 &114734347468151670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125256590603436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeecda2baef25704c8fe802e627e9f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputType: 0
-  Pause:
-    key: 27
-    controllerButton: 8
-    m_Enabled: 1
-  Interact:
-    key: 101
-    controllerButton: 4
-    m_Enabled: 1
-  MeleeAttack:
-    key: 107
-    controllerButton: 3
-    m_Enabled: 0
-  RangedAttack:
-    key: 111
-    controllerButton: 10
-    m_Enabled: 0
-  Jump:
-    key: 32
-    controllerButton: 1
-    m_Enabled: 1
-  Horizontal:
-    positive: 100
-    negative: 97
-    controllerAxis: 1
-  Vertical:
-    positive: 119
-    negative: 115
-    controllerAxis: 2
-  dataSettings:
-    dataTag: PlayerInput
-    persistenceType: 3
---- !u!114 &114854669915511232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125256590603436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49de84fa3d321d245bc900e599de015f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 212611162554739646}
-  damageable: {fileID: 114774311958850474}
-  meleeDamager: {fileID: 114460243114916098}
-  facingLeftBulletSpawnPoint: {fileID: 4456631231676054}
-  facingRightBulletSpawnPoint: {fileID: 4929711121330312}
-  bulletPool: {fileID: 114680495344679792}
-  cameraFollowTarget: {fileID: 4530920980854552}
-  maxSpeed: 7
-  groundAcceleration: 100
-  groundDeceleration: 100
-  pushingSpeedProportion: 0.5
-  airborneAccelProportion: 1
-  airborneDecelProportion: 0.5
-  gravity: 38
-  jumpSpeed: 16.5
-  jumpAbortSpeedReduction: 100
-  hurtJumpAngle: 45
-  hurtJumpSpeed: 8
-  flickeringDuration: 0.05
-  meleeAttackDashSpeed: 15
-  dashWhileAirborne: 1
-  footstepAudioPlayer: {fileID: 114293955134965878}
-  landingAudioPlayer: {fileID: 114437884384235768}
-  hurtAudioPlayer: {fileID: 114513338842717954}
-  meleeAttackAudioPlayer: {fileID: 114450141185934166}
-  rangedAttackAudioPlayer: {fileID: 114803637809275856}
-  shotsPerSecond: 2
-  bulletSpeed: 30
-  holdingGunTimeoutDuration: 1.5
-  rightBulletSpawnPointAnimated: 1
-  cameraHorizontalFacingOffset: 2
-  cameraHorizontalSpeedOffset: 0.2
-  cameraVerticalInputOffset: 2
-  maxHorizontalDeltaDampTime: 0.4
-  maxVerticalDeltaDampTime: 0.6
-  verticalCameraOffsetDelay: 1
-  spriteOriginallyFacesLeft: 0
---- !u!114 &114774311958850474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125256590603436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960138f0450083543ad1d17e1352019d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 5
-  invulnerableAfterDamage: 1
-  invulnerabilityDuration: 3
-  disableOnDeath: 0
-  centreOffset: {x: 0, y: 1}
-  OnHealthSet:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ChangeHitPointUI
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114854669915511232}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnHurt
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-  OnDie:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114854669915511232}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnDie
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-  OnGainHealth:
-    m_PersistentCalls:
-      m_Calls: []
-  dataSettings:
-    dataTag: PlayerHealth
-    persistenceType: 3
---- !u!114 &114460243114916098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125256590603436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1506f7b67235554cb42519c257da979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  offset: {x: 1.5, y: 0.7728567}
-  size: {x: 2.5, y: 1.4542866}
-  offsetBasedOnSpriteFacing: 1
-  spriteRenderer: {fileID: 212611162554739646}
-  canHitTriggers: 0
-  disableDamageAfterHit: 0
-  forceRespawn: 0
-  ignoreInvincibility: 0
-  hittableLayers:
-    serializedVersion: 2
-    m_Bits: 66048
-  OnDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNonDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &114680495344679792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125256590603436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f228fbb363353454ca367fa9d85a2d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1567967645905842, guid: 4593cdd83a432764aac5e418b812b3e0, type: 3}
-  initialPoolCount: 10
---- !u!114 &114621962236214084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125256590603436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9dfe00ad5fa4db7857a85c2f5009f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryEvents:
-  - key: Key1
-    OnAdd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114854669915511232}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: KeyInventoryEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnRemove:
-      m_PersistentCalls:
-        m_Calls: []
-  - key: Key2
-    OnAdd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114854669915511232}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: KeyInventoryEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnRemove:
-      m_PersistentCalls:
-        m_Calls: []
-  - key: Key3
-    OnAdd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114854669915511232}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: KeyInventoryEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnRemove:
-      m_PersistentCalls:
-        m_Calls: []
-  - key: Staff
-    OnAdd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114734347468151670}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: EnableMeleeAttacking
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnRemove:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114734347468151670}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: DisableMeleeAttacking
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - key: Gun
-    OnAdd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114734347468151670}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: EnableRangedAttacking
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnRemove:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114734347468151670}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: DisableRangedAttacking
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  dataSettings:
-    dataTag: inventory
-    persistenceType: 3
+  actorInitModule:
+    initActorMode: 0
+    guidRule: 0
+    guid: cca8f36d-e403-4d94-a66d-ca4aa9f1107e
+    worldIndex: 0
+    iD: Ellen
+  actorContainer: {fileID: 0}
 --- !u!1 &1181578502863468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1313,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2

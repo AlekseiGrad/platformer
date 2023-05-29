@@ -7,7 +7,7 @@ namespace Gamekit2D
 {
     public class AutoCameraSetup : MonoBehaviour
     {
-        public bool autoSetupCameraFollow = true;
+        public bool autoSetupCameraFollow = false;
         public string cameraFollowGameObjectName = "Ellen";
 
         void Awake ()

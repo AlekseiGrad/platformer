@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6378800286627206571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb80cdee546c44b7a1763f9aa1066d5, type: 3}
+  m_Name: ViewReferenceComponent
+  m_EditorClassIdentifier: 
+  component:
+    ViewReference:
+      m_AssetGUID: 69d624313c1944e90aaf58ce6350267b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+--- !u!114 &-3526941384538086773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac06fc103d554d15b3c2d9639861257, type: 3}
+  m_Name: AnimationSystem
+  m_EditorClassIdentifier: 
+  system:
+    AnimatorStateComponent:
+      Animator: {fileID: 0}
+      Activated: 0
+--- !u!114 &-2645892502752733909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc4c57177f2e467b85aade226a60849, type: 3}
+  m_Name: CharacterComponent
+  m_EditorClassIdentifier: 
+  component:
+    Speed: 8
+    GroundMask:
+      serializedVersion: 2
+      m_Bits: 2147483648
+    GroundDistance: 0.1
+--- !u!114 &-1613578690804905361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb914ade8e1f4a14a2e613ba37c97fc, type: 3}
+  m_Name: AnimatorStateComponent
+  m_EditorClassIdentifier: 
+  component:
+    Animator: {fileID: 0}
+    Activated: 0
+--- !u!114 &-763986750029928466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c546952be042455dae2a480bc028d3c, type: 3}
+  m_Name: Rigidbody2DProviderComponent
+  m_EditorClassIdentifier: 
+  component:
+    Rigidbody: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379295890174cec4b8e7a0ac2e17af01, type: 3}
+  m_Name: DefaultCharacterContainer
+  m_EditorClassIdentifier: 
+  holder:
+    components:
+    - {fileID: 5185694778253244611}
+    - {fileID: -763986750029928466}
+    - {fileID: 3792341975893071904}
+    - {fileID: -6378800286627206571}
+    - {fileID: -2645892502752733909}
+    - {fileID: -1613578690804905361}
+    systems:
+    - {fileID: 5564576959092918103}
+    - {fileID: -3526941384538086773}
+    - {fileID: 6792076631922853117}
+    Parent: {fileID: 11400000}
+  containerIndex: 1429482425
+--- !u!114 &3792341975893071904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495b2cef0c5294e408140600c961906e, type: 3}
+  m_Name: UnityTransformComponent
+  m_EditorClassIdentifier: 
+  component:
+    Transform: {fileID: 0}
+--- !u!114 &5185694778253244611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3563c74b045644c33af4c2139b5f73a6, type: 3}
+  m_Name: InputListenerTagComponent
+  m_EditorClassIdentifier: 
+--- !u!114 &5564576959092918103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba92c4a090a094be8a020fb4711876bd, type: 3}
+  m_Name: CharacterMovementSystem
+  m_EditorClassIdentifier: 
+--- !u!114 &6792076631922853117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95e959c322984cf2836637cb53ede91, type: 3}
+  m_Name: CharacterMovingAnimationSystem
+  m_EditorClassIdentifier: 

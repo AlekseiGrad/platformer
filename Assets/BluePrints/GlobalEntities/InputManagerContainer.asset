@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379295890174cec4b8e7a0ac2e17af01, type: 3}
+  m_Name: InputManagerContainer
+  m_EditorClassIdentifier: 
+  holder:
+    components:
+    - {fileID: 8115748265105048125}
+    systems:
+    - {fileID: 8965986030419833758}
+    Parent: {fileID: 11400000}
+  containerIndex: -183182050
+--- !u!114 &8115748265105048125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce17f1d2ce1b045baab2edf37607af43, type: 3}
+  m_Name: InputActionsComponent
+  m_EditorClassIdentifier: 
+  component:
+    actions: {fileID: -944628639613478452, guid: 8b26b64b43ca142038f85ee8e2c2e313,
+      type: 3}
+    inputActionSettings:
+    - ActionName: Move
+      Identifier: {fileID: 11400000, guid: 9b1c533f280fc4fe09faddaf33d8f9aa, type: 2}
+    - ActionName: Jump
+      Identifier: {fileID: 11400000, guid: 2b1f05ff847ea4cb4b5be5976d0702b2, type: 2}
+--- !u!114 &8965986030419833758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d50618f535d44d188b54c4e607af72, type: 3}
+  m_Name: InputListenSystem
+  m_EditorClassIdentifier: 

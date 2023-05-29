@@ -10,7 +10,7 @@ namespace Gamekit2D
         {
             base.OnSLStateEnter(animator, stateInfo, layerIndex);
 
-            m_MonoBehaviour.SetMoveVector(Vector2.zero);
+            //m_MonoBehaviour.SetMoveVector(Vector2.zero);
         }
     }
 }
