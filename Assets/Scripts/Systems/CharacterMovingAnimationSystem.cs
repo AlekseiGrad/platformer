@@ -26,12 +26,12 @@ namespace Systems
                 Owner.Command(new FloatAnimationCommand()
                 {
                     Index = AnimParametersMap.VerticalSpeed,
-                    Value = Owner.GetComponent<CharacterComponent>().Speed
+                    Value = Owner.GetComponent<CharacterComponent>().MaxSpeed
                 });
                 Owner.Command(new FloatAnimationCommand()
                 {
                     Index = AnimParametersMap.HorizontalSpeed,
-                    Value = Owner.GetComponent<CharacterComponent>().Speed
+                    Value = Owner.GetComponent<CharacterComponent>().MaxSpeed
                 });
             } else if (InputIdentifierMap.Jump == command.Index)
             {

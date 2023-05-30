@@ -9,5 +9,6 @@ namespace Components
     public sealed class MovingPlatformComponent : BaseComponent
     {
         public float Speed;
+        public float Offset;
     }
 }

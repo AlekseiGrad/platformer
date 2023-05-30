@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/Content/Ellen.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d3e31253e97ae4a70b633c610248a4a3
+    m_Address: Assets/Content/MovingPlatform.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8d7e0d8a8054941c58a45ebdeb80a196, type: 2}
   m_SchemaSet:

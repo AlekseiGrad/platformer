@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6519394471030989733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4338fb192fb62b2418f291bcf864f91a, type: 3}
+  m_Name: DamageComponent
+  m_EditorClassIdentifier: 
 --- !u!114 &-6378800286627206571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,11 +59,28 @@ MonoBehaviour:
   m_Name: CharacterComponent
   m_EditorClassIdentifier: 
   component:
-    Speed: 8
+    MaxSpeed: 0
     GroundMask:
       serializedVersion: 2
       m_Bits: 2147483648
     GroundDistance: 0.1
+    Gravity: 0
+    JumpSpeed: 0
+    JumpReduction: 0
+--- !u!114 &-1786079539220966530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a1f4dcacc62644291a6f15bcdc4c2c, type: 3}
+  m_Name: HealthComponent
+  m_EditorClassIdentifier: 
+  component:
+    HealthPoints: 0
 --- !u!114 &-1613578690804905361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,17 +125,33 @@ MonoBehaviour:
   holder:
     components:
     - {fileID: 5185694778253244611}
+    - {fileID: -6519394471030989733}
     - {fileID: -763986750029928466}
     - {fileID: 3792341975893071904}
     - {fileID: -6378800286627206571}
     - {fileID: -2645892502752733909}
     - {fileID: -1613578690804905361}
+    - {fileID: -1786079539220966530}
     systems:
     - {fileID: 5564576959092918103}
     - {fileID: -3526941384538086773}
     - {fileID: 6792076631922853117}
+    - {fileID: 7947835364964422154}
+    - {fileID: 650276490960819225}
     Parent: {fileID: 11400000}
   containerIndex: 1429482425
+--- !u!114 &650276490960819225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446010309d0296c4fb6eff093ad52af2, type: 3}
+  m_Name: CharacterDeathSystem
+  m_EditorClassIdentifier: 
 --- !u!114 &3792341975893071904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,4 +201,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e959c322984cf2836637cb53ede91, type: 3}
   m_Name: CharacterMovingAnimationSystem
+  m_EditorClassIdentifier: 
+--- !u!114 &7947835364964422154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0595294df5fb64a48bb99030e34f3f54, type: 3}
+  m_Name: CharacterDamageSystem
   m_EditorClassIdentifier: 

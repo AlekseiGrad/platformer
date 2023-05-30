@@ -81,7 +81,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -119,12 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorInitModule:
-    initActorMode: 0
+    initActorMode: 3
     guidRule: 0
     guid: 593705bd-663e-4f49-8b1a-3ec97fe934ad
     worldIndex: 0
     iD: MovingPlatform
-  actorContainer: {fileID: 0}
+  actorContainer: {fileID: 11400000, guid: 38af5ea3c62854b0b873f3f2d96e6560, type: 2}
 --- !u!1 &2002092560229043952
 GameObject:
   m_ObjectHideFlags: 0

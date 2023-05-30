@@ -16,8 +16,11 @@ namespace Systems
         private float characterSpeed;
         private float groundDistance;
         private LayerMask groundedMask;
+        
 
         private Vector2 moveVector;
+        private float gravity;
+        private float jumpReduction;
         
 
         public override void InitSystem()
@@ -25,9 +28,10 @@ namespace Systems
             rigidbody2D = Owner
                 .GetComponent<Rigidbody2DProviderComponent>().Rigidbody;
             var character = Owner.GetComponent<CharacterComponent>();
-            characterSpeed = character.Speed;
+            characterSpeed = character.MaxSpeed;
             groundDistance = character.GroundDistance;
             groundedMask = character.GroundMask;
+            gravity = character.Gravity;
         }
 
 
@@ -47,11 +51,7 @@ namespace Systems
         private void Move(Vector2 vector)
         {
             if (vector.y > 0) return;
-            Owner.Command(new BoolAnimationCommand()
-            {
-                Index = AnimParametersMap.Crouching,
-                Value = true
-            });
+
             
             if (IsGrounded())
                 rigidbody2D.AddForce(vector*characterSpeed, ForceMode2D.Impulse);
@@ -66,6 +66,29 @@ namespace Systems
         private bool IsGrounded()
         {
             return Physics2D.Raycast(rigidbody2D.position, Vector2.down, groundDistance, groundedMask);
+        }
+
+        private void SetMoveVector(Vector2 vector)
+        {
+            moveVector = vector;
+        }
+
+        private void GroundedMovement()
+        {
+            moveVector.y -= gravity * Time.deltaTime;
+        }
+
+        private bool IsFalling()
+        {
+            return moveVector.y < 0.0f;
+        }
+
+        private void UpdateJump()
+        {
+            if (moveVector.y > 0.0f)
+            {
+                moveVector.y -= jumpReduction * Time.deltaTime;
+            }
         }
     }
 }
