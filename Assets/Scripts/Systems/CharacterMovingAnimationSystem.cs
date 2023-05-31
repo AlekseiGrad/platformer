@@ -7,39 +7,45 @@ using Components;
 
 namespace Systems
 {
-	[Serializable][Documentation(Doc.NONE, "")]
-    public sealed class CharacterMovingAnimationSystem : BaseSystem,IReactCommand<InputStartedCommand>
+    [Serializable]
+    [Documentation(Doc.NONE, "")]
+    public sealed class CharacterMovingAnimationSystem : BaseSystem, IReactCommand<InputCommand>
     {
+        private CharacterComponent characterComponent;
+
         public override void InitSystem()
         {
-            // Owner.Command(new BoolAnimationCommand()
-            // {
-            //     Index = AnimParametersMap.Normal,
-            //     Value = true
-            // });
+            characterComponent = Owner.GetComponent<CharacterComponent>();
+            Owner.Command(new TriggerAnimationCommand() { Index = AnimParametersMap.Respawn });
         }
 
-        public void CommandReact(InputStartedCommand command)
+        public void CommandReact(InputCommand command)
         {
             if (InputIdentifierMap.Move == command.Index)
             {
-                // Owner.Command(new FloatAnimationCommand()
-                // {
-                //     Index = AnimParametersMap.VerticalSpeed,
-                //     Value = Owner.GetComponent<CharacterComponent>().RunSpeed
-                // });
-                // Owner.Command(new FloatAnimationCommand()
-                // {
-                //     Index = AnimParametersMap.HorizontalSpeed,
-                //     Value = Owner.GetComponent<CharacterComponent>().RunSpeed
-                // });
-            } else if (InputIdentifierMap.Jump == command.Index)
+                var vector = command.Context.ReadValue<Vector2>().normalized;
+
+                if (vector.y < 0)
+                    Owner.Command(new BoolAnimationCommand() { Index = AnimParametersMap.Crouching, Value = true });
+                else
+                    Owner.Command(new BoolAnimationCommand() { Index = AnimParametersMap.Crouching, Value = false });
+
+                if (vector.x != 0)
+                {
+                    Owner.Command((new FloatAnimationCommand()
+                    {
+                        Index = AnimParametersMap.HorizontalSpeed, Value = characterComponent.AnimRunSpeed
+                    }));
+                }
+                else if (vector.x == 0)
+                {
+                    Owner.Command(new TriggerAnimationCommand() { Index = AnimParametersMap.Grounded });
+                }
+            }
+
+            if (InputIdentifierMap.Jump == command.Index)
             {
-                // Owner.Command(new BoolAnimationCommand()
-                // {
-                //     Index = AnimParametersMap.HorizontalSpeed,
-                //     Value = true
-                // });
+                Owner.Command(new BoolAnimationCommand() { Index = AnimParametersMap.Grounded, Value = false });
             }
         }
     }

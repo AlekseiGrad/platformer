@@ -126,7 +126,7 @@ namespace Gamekit2D
 
         private void Start()
         {
-            SceneLinkedSMB<EnemyBehaviour>.Initialise(m_Animator, this);
+            //SceneLinkedSMB<EnemyBehaviour>.Initialise(m_Animator, this);
 
             m_LocalBounds = new Bounds();
             int count = m_CharacterController2D.Rigidbody2D.GetAttachedColliders(s_ColliderCache);

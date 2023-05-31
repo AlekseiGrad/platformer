@@ -30,8 +30,21 @@ MonoBehaviour:
     systems:
     - {fileID: -5761938547467448181}
     - {fileID: 6738994897447534930}
+    - {fileID: 1453828310008740942}
     Parent: {fileID: 11400000}
   containerIndex: 1594580010
+--- !u!114 &1453828310008740942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f49998da3657ee45a99c2e28138eb69, type: 3}
+  m_Name: DeathSystem
+  m_EditorClassIdentifier: 
 --- !u!114 &1831587987499860527
 MonoBehaviour:
   m_ObjectHideFlags: 0

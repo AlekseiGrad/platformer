@@ -8,6 +8,8 @@ namespace Components
     [Serializable][Documentation(Doc.NONE, "")]
     public sealed class HealthComponent : BaseComponent
     {
-        public float HealthValue;
+        public float HealthMaxValue;
+        public float HealthCurrentValue;
+        public float HealthStartValue;
     }
 }

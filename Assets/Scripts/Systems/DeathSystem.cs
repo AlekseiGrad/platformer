@@ -8,17 +8,15 @@ using Components;
 namespace Systems
 {
 	[Serializable][Documentation(Doc.NONE, "")]
-    public sealed class PlatformCatchSystem : BaseSystem, IReactCommand<CatchCommand>
+    public sealed class DeathSystem : BaseSystem, IReactCommand<IsDeadCommand>
     {
-        
         public override void InitSystem()
         {
-            var character = Owner.GetComponent<CharacterComponent>();
         }
 
-        public void CommandReact(CatchCommand command)
+        public void CommandReact(IsDeadCommand command)
         {
-            
+           
         }
     }
 }

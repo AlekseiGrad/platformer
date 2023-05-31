@@ -6,10 +6,9 @@ using UnityEngine;
 namespace Components
 {
     [Serializable][Documentation(Doc.NONE, "")]
-    public sealed class MovingPlatformComponent : BaseComponent
+    public sealed class AttackComponent : BaseComponent
     {
-        public float Speed;
-        public float Offset;
-        public int Direction;
+        public float AttackRange;
+        
     }
 }

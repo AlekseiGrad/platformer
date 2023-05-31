@@ -14,6 +14,7 @@ namespace Components
         public LayerMask GroundMask;
         public float GroundDistance;
 
-
+        public float AnimRunSpeed;
+        public float AnimJumpSpeed;
     }
 }

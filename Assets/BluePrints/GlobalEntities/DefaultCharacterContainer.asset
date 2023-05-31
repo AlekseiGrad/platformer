@@ -62,11 +62,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     RunSpeed: 5
-    JumpSpeed: 10
+    JumpSpeed: 5
     GroundMask:
       serializedVersion: 2
       m_Bits: 2147483648
     GroundDistance: 0.1
+    AnimRunSpeed: 3
+    AnimJumpSpeed: 3
 --- !u!114 &-1786079539220966530
 MonoBehaviour:
   m_ObjectHideFlags: 0

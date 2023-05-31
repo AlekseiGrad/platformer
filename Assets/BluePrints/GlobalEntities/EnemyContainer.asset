@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9163420351521507562
+--- !u!114 &-6353798235492050539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,12 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c546952be042455dae2a480bc028d3c, type: 3}
-  m_Name: Rigidbody2DProviderComponent
+  m_Script: {fileID: 11500000, guid: 9ac06fc103d554d15b3c2d9639861257, type: 3}
+  m_Name: AnimationSystem
   m_EditorClassIdentifier: 
-  component:
-    Rigidbody: {fileID: 0}
---- !u!114 &-4286964671383981768
+  system:
+    AnimatorStateComponent:
+      Animator: {fileID: 0}
+      Activated: 0
+--- !u!114 &-6257843891840116403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac12826301d7424e9f873bceba945e5, type: 3}
+  m_Name: EnemyMovementAnimationSystem
+  m_EditorClassIdentifier: 
+--- !u!114 &-1953706811067908256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     Transform: {fileID: 0}
---- !u!114 &-2510391043272923716
+--- !u!114 &-1865051127833423728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,13 +51,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e0fbff4bdfd543fe8f49db29693b023, type: 3}
-  m_Name: MovingPlatformComponent
+  m_Script: {fileID: 11500000, guid: 1c546952be042455dae2a480bc028d3c, type: 3}
+  m_Name: Rigidbody2DProviderComponent
   m_EditorClassIdentifier: 
   component:
-    Speed: 1.4
-    Offset: 3
-    Direction: 1
+    Rigidbody: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,20 +66,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 379295890174cec4b8e7a0ac2e17af01, type: 3}
-  m_Name: MovingPlatformContainer
+  m_Name: EnemyContainer
   m_EditorClassIdentifier: 
   holder:
     components:
-    - {fileID: 567032744130984879}
-    - {fileID: -9163420351521507562}
-    - {fileID: -4286964671383981768}
-    - {fileID: -2510391043272923716}
+    - {fileID: 5339833699972847314}
+    - {fileID: -1953706811067908256}
+    - {fileID: 964722383453334777}
+    - {fileID: -1865051127833423728}
     systems:
-    - {fileID: 158363051810776739}
-    - {fileID: 3409756683433577263}
+    - {fileID: 7852613994870418824}
+    - {fileID: -6353798235492050539}
+    - {fileID: -6257843891840116403}
     Parent: {fileID: 11400000}
-  containerIndex: -2023033285
---- !u!114 &158363051810776739
+  containerIndex: 2069223362
+--- !u!114 &964722383453334777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,10 +89,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76716f1c45cce405b82c42cce9fa6e1a, type: 3}
-  m_Name: PlatformMovingSystem
+  m_Script: {fileID: 11500000, guid: 74a1f4dcacc62644291a6f15bcdc4c2c, type: 3}
+  m_Name: HealthComponent
   m_EditorClassIdentifier: 
---- !u!114 &567032744130984879
+  component:
+    HealthValue: 0
+--- !u!114 &5339833699972847314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,11 +108,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     ViewReference:
-      m_AssetGUID: d3e31253e97ae4a70b633c610248a4a3
+      m_AssetGUID: 5a0348d5b0285a24b97618997a266c2b
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
---- !u!114 &3409756683433577263
+--- !u!114 &7852613994870418824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26649db021442b64caa353397b878d9f, type: 3}
-  m_Name: PlatformCatchSystem
+  m_Script: {fileID: 11500000, guid: 14cb4d9247245b24788b4c000bca7206, type: 3}
+  m_Name: EnemyMovementSystem
   m_EditorClassIdentifier: 

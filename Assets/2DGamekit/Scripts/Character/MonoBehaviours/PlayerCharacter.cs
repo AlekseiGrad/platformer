@@ -152,7 +152,7 @@ namespace Gamekit2D
                 m_CamFollowVerticalSpeed = maxVerticalDelta / maxVerticalDeltaDampTime;
             }
 
-            SceneLinkedSMB<PlayerCharacter>.Initialise(m_Animator, this);
+            //SceneLinkedSMB<PlayerCharacter>.Initialise(m_Animator, this);
 
             m_StartingPosition = transform.position;
             m_StartingFacingLeft = GetFacing() < 0.0f;

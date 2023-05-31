@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Assets/Content/MovingPlatform.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5a0348d5b0285a24b97618997a266c2b
+    m_Address: Assets/Content/Chomper.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8d7e0d8a8054941c58a45ebdeb80a196, type: 2}
   m_SchemaSet:

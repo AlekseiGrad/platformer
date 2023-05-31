@@ -17,25 +17,27 @@ namespace Systems
 
         public override void InitSystem()
         {
-            direction = -1;
-            offset = 12;
-            speed = 2.0f;
             rigidbody2D = Owner.GetComponent<Rigidbody2DProviderComponent>().Rigidbody;
+            var platform = Owner.GetComponent<MovingPlatformComponent>();
+            direction = platform.Direction;
+            offset = platform.Offset;
+            speed = platform.Speed;
             rigidbody2D.isKinematic = true;
         }
 
         public void FixedUpdateLocal()
         {
-           rigidbody2D.velocity = Vector2.right * direction * speed;
-           Debug.Log(Mathf.Abs(rigidbody2D.position.x));
-           if (Mathf.Abs(rigidbody2D.position.x) > offset)
-               ChangeDirection();
+            rigidbody2D.velocity = Vector2.right * direction * speed;
+            UpdateDirection(rigidbody2D.position.x);
+
         }
 
-        private void ChangeDirection()
+        private void UpdateDirection(float x)
         {
-            direction = (direction == 1) ? -1 : 1;
+            if (x + offset < 0 )
+                    direction = 1;
+            else if (x - offset > 0)
+                    direction = -1;
         }
-        
     }
 }
