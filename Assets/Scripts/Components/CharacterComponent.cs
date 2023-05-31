@@ -9,13 +9,11 @@ namespace Components
     [Serializable][Documentation(Doc.NONE, "")]
     public sealed class CharacterComponent : BaseComponent
     {
-        public float MaxSpeed;
+        public float RunSpeed;
+        public float JumpSpeed;
         public LayerMask GroundMask;
         public float GroundDistance;
 
-        public float Gravity;
-        public float JumpSpeed;
-        public float JumpReduction;
 
     }
 }

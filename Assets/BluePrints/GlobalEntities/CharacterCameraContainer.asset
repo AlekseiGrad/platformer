@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: CameraComponent
   m_EditorClassIdentifier: 
   component:
-    Offset: {x: 0, y: 0, z: -13.5}
+    Offset: {x: 0, y: 2, z: -13.5}
 --- !u!114 &5813755399068292539
 MonoBehaviour:
   m_ObjectHideFlags: 0

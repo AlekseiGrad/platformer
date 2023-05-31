@@ -12,34 +12,34 @@ namespace Systems
     {
         public override void InitSystem()
         {
-            Owner.Command(new BoolAnimationCommand()
-            {
-                Index = AnimParametersMap.Normal,
-                Value = true
-            });
+            // Owner.Command(new BoolAnimationCommand()
+            // {
+            //     Index = AnimParametersMap.Normal,
+            //     Value = true
+            // });
         }
 
         public void CommandReact(InputStartedCommand command)
         {
             if (InputIdentifierMap.Move == command.Index)
             {
-                Owner.Command(new FloatAnimationCommand()
-                {
-                    Index = AnimParametersMap.VerticalSpeed,
-                    Value = Owner.GetComponent<CharacterComponent>().MaxSpeed
-                });
-                Owner.Command(new FloatAnimationCommand()
-                {
-                    Index = AnimParametersMap.HorizontalSpeed,
-                    Value = Owner.GetComponent<CharacterComponent>().MaxSpeed
-                });
+                // Owner.Command(new FloatAnimationCommand()
+                // {
+                //     Index = AnimParametersMap.VerticalSpeed,
+                //     Value = Owner.GetComponent<CharacterComponent>().RunSpeed
+                // });
+                // Owner.Command(new FloatAnimationCommand()
+                // {
+                //     Index = AnimParametersMap.HorizontalSpeed,
+                //     Value = Owner.GetComponent<CharacterComponent>().RunSpeed
+                // });
             } else if (InputIdentifierMap.Jump == command.Index)
             {
-                Owner.Command(new BoolAnimationCommand()
-                {
-                    Index = AnimParametersMap.HorizontalSpeed,
-                    Value = true
-                });
+                // Owner.Command(new BoolAnimationCommand()
+                // {
+                //     Index = AnimParametersMap.HorizontalSpeed,
+                //     Value = true
+                // });
             }
         }
     }

@@ -9,5 +9,7 @@ namespace Components
     public sealed class CameraComponent : BaseComponent
     {
         public Vector3 Offset;
+        public Vector3 Velocity;
+        public float Smoothing;
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4338fb192fb62b2418f291bcf864f91a, type: 3}
   m_Name: DamageComponent
   m_EditorClassIdentifier: 
+  component:
+    DamageValue: 0
 --- !u!114 &-6378800286627206571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,14 +61,12 @@ MonoBehaviour:
   m_Name: CharacterComponent
   m_EditorClassIdentifier: 
   component:
-    MaxSpeed: 0
+    RunSpeed: 5
+    JumpSpeed: 10
     GroundMask:
       serializedVersion: 2
       m_Bits: 2147483648
     GroundDistance: 0.1
-    Gravity: 0
-    JumpSpeed: 0
-    JumpReduction: 0
 --- !u!114 &-1786079539220966530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: HealthComponent
   m_EditorClassIdentifier: 
   component:
-    HealthPoints: 0
+    HealthValue: 0
 --- !u!114 &-1613578690804905361
 MonoBehaviour:
   m_ObjectHideFlags: 0

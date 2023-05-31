@@ -8,15 +8,19 @@ namespace Systems
 	[Serializable][Documentation(Doc.NONE, "")]
     public sealed class CharacterCameraFollowingSystem : BaseSystem, ILateUpdatable
     {
-        private Vector3 targetPosition;
         private Vector3 offset;
+        private Vector3 velocity;
+        private float smoothing;
         private Camera camera;
         private EntitiesFilter characterFilter;
 
         public override void InitSystem()
         {
             camera = Owner.GetComponent<CameraProviderComponent>().Camera;
-            offset = Owner.GetComponent<CameraComponent>().Offset;
+            var cameraComponent = Owner.GetComponent<CameraComponent>();
+            offset = cameraComponent.Offset;
+            velocity = cameraComponent.Velocity;
+            smoothing = cameraComponent.Smoothing;
             characterFilter = Owner.World.GetFilter(Filter.Get<CharacterComponent>());
         }
 
@@ -27,8 +31,9 @@ namespace Systems
 
             foreach (var entity in characterFilter)
             {
-                targetPosition = entity.GetComponent<UnityTransformComponent>().Transform.position;
-                camera.transform.position = offset + targetPosition;
+                var currentPosition = camera.transform.position;
+                var targetPosition = entity.GetComponent<UnityTransformComponent>().Transform.position + offset;
+                camera.transform.position = Vector3.SmoothDamp(currentPosition, targetPosition,ref velocity, smoothing * Time.deltaTime);
             }
         }
     }
