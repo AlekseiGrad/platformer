@@ -1,8 +1,5 @@
 using System;
-using HECSFramework.Unity;
 using HECSFramework.Core;
-using UnityEngine;
-using Components;
 
 namespace Systems
 {
