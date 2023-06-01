@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7223192182350499937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a1eb47538ed4c468386820cb6074fa, type: 3}
-  m_Name: CharacterCameraProviderComponent
-  m_EditorClassIdentifier: 
 --- !u!114 &-7080277409995591126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,16 +22,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 379295890174cec4b8e7a0ac2e17af01, type: 3}
-  m_Name: CharacterCameraContainer
+  m_Name: CharacterCameraContainerCLONE
   m_EditorClassIdentifier: 
   holder:
     components:
-    - {fileID: 5813755399068292539}
     - {fileID: 4102333295333513400}
+    - {fileID: 5813755399068292539}
     systems:
     - {fileID: -7080277409995591126}
     Parent: {fileID: 11400000}
-  containerIndex: 1408631811
+  containerIndex: 1276818466
 --- !u!114 &4102333295333513400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     Offset: {x: 0, y: 2, z: -13.5}
+    Velocity: {x: 0, y: 0, z: 0}
+    Smoothing: 1
 --- !u!114 &5813755399068292539
 MonoBehaviour:
   m_ObjectHideFlags: 0

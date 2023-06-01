@@ -1,4 +1,5 @@
 using System;
+using Commands;
 using HECSFramework.Unity;
 using HECSFramework.Core;
 using UnityEngine;
@@ -19,7 +20,8 @@ namespace Systems
             spawnPoint = Owner.World.GetSingleComponent<SpawnPointTagComponent>();
             var position = spawnPoint.Owner.GetComponent<UnityTransformComponent>().Transform.position;
             var character = await characterHolderComponent.Container.GetActor(Owner.World, position: position);
-            character.Init(); 
+            character.Init();
+            Owner.World.Command(new DefaultCharacterSpawnCommand());
         }
     }
 }

@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5761938547467448181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: decc589e2f6f34b00bafda320a851ba3, type: 3}
-  m_Name: TestTestSystem
-  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,7 +16,6 @@ MonoBehaviour:
     components:
     - {fileID: 1831587987499860527}
     systems:
-    - {fileID: -5761938547467448181}
     - {fileID: 6738994897447534930}
     - {fileID: 1453828310008740942}
     Parent: {fileID: 11400000}

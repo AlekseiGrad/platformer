@@ -9,44 +9,73 @@ namespace Systems
 {
     [Serializable]
     [Documentation(Doc.NONE, "")]
-    public sealed class CharacterMovingAnimationSystem : BaseSystem, IReactCommand<InputCommand>
+    public sealed class CharacterMovingAnimationSystem : BaseSystem, IUpdatable
     {
-        private CharacterComponent characterComponent;
+        private AnimationComponent animationComponent;
+        private MoveVectorComponent moveVectorComponent;
+        private SpriteRenderer spriteRenderer;
 
         public override void InitSystem()
         {
-            characterComponent = Owner.GetComponent<CharacterComponent>();
+            animationComponent = Owner.GetComponent<AnimationComponent>();
+            moveVectorComponent = Owner.GetComponent<MoveVectorComponent>();
+            spriteRenderer = Owner.GetComponent<SpriteRendererProviderComponent>().SpriteRenderer;
             Owner.Command(new TriggerAnimationCommand() { Index = AnimParametersMap.Respawn });
         }
 
-        public void CommandReact(InputCommand command)
+        public void UpdateLocal()
         {
-            if (InputIdentifierMap.Move == command.Index)
+            UpdateRunning();
+            UpdateCrouching();
+            UpdateJumping();
+            UpdateGrounded();
+        }
+
+        private void UpdateRunning()
+        {
+            if (moveVectorComponent.IsGrounded)
             {
-                var vector = command.Context.ReadValue<Vector2>().normalized;
-
-                if (vector.y < 0)
-                    Owner.Command(new BoolAnimationCommand() { Index = AnimParametersMap.Crouching, Value = true });
-                else
-                    Owner.Command(new BoolAnimationCommand() { Index = AnimParametersMap.Crouching, Value = false });
-
-                if (vector.x != 0)
+                Owner.Command(new FloatAnimationCommand()
                 {
-                    Owner.Command((new FloatAnimationCommand()
-                    {
-                        Index = AnimParametersMap.HorizontalSpeed, Value = characterComponent.AnimRunSpeed
-                    }));
-                }
-                else if (vector.x == 0)
-                {
-                    Owner.Command(new TriggerAnimationCommand() { Index = AnimParametersMap.Grounded });
-                }
+                    Index = AnimParametersMap.HorizontalSpeed, Value = moveVectorComponent.MoveVector.x
+                });
             }
+        }
 
-            if (InputIdentifierMap.Jump == command.Index)
+        private void UpdateCrouching()
+        {
+            Owner.Command(new BoolAnimationCommand()
+                {
+                    Index = AnimParametersMap.Crouching, Value =  moveVectorComponent.IsGrounded && moveVectorComponent.MoveVector.y < -2
+                });
+        }
+
+        private void UpdateJumping()
+        {
+            if (!moveVectorComponent.IsGrounded && moveVectorComponent.MoveVector.y != 0)
+                Owner.Command(new FloatAnimationCommand()
+                {
+                    Index = AnimParametersMap.VerticalSpeed, Value = animationComponent.MoveSpeed
+                });
+            else
             {
-                Owner.Command(new BoolAnimationCommand() { Index = AnimParametersMap.Grounded, Value = false });
+                Owner.Command(new FloatAnimationCommand()
+                {
+                    Index = AnimParametersMap.VerticalSpeed, Value = 0
+                });
             }
+        }
+
+        private void UpdateGrounded()
+        {
+            Owner.Command(new BoolAnimationCommand()
+            {
+                Index = AnimParametersMap.Grounded, Value = moveVectorComponent.IsGrounded
+            });
+        }
+
+        private void UpdateFacing()
+        {
         }
     }
 }

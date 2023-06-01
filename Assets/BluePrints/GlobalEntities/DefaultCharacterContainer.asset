@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6519394471030989733
+--- !u!114 &-6887442264072377200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4338fb192fb62b2418f291bcf864f91a, type: 3}
-  m_Name: DamageComponent
+  m_Script: {fileID: 11500000, guid: 041adff5fc5f96a4982d5df8d9bcd50a, type: 3}
+  m_Name: GroundCheckComponent
   m_EditorClassIdentifier: 
   component:
-    DamageValue: 0
+    GroundDistance: 0.15
+    GroundedMask:
+      serializedVersion: 2
+      m_Bits: 2147483648
 --- !u!114 &-6378800286627206571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +51,7 @@ MonoBehaviour:
     AnimatorStateComponent:
       Animator: {fileID: 0}
       Activated: 0
---- !u!114 &-2645892502752733909
+--- !u!114 &-3095166590408388248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,18 +60,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc4c57177f2e467b85aade226a60849, type: 3}
-  m_Name: CharacterComponent
+  m_Script: {fileID: 11500000, guid: f97f2a4d8d49b1245971716542234311, type: 3}
+  m_Name: MoveVectorComponent
   m_EditorClassIdentifier: 
   component:
-    RunSpeed: 5
-    JumpSpeed: 5
-    GroundMask:
-      serializedVersion: 2
-      m_Bits: 2147483648
-    GroundDistance: 0.1
-    AnimRunSpeed: 3
-    AnimJumpSpeed: 3
+    MoveVector: {x: 0, y: 0}
+    IsGrounded: 0
+--- !u!114 &-3031660863935327095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3250d917c519a4b88198d851cebdea, type: 3}
+  m_Name: SpriteRendererProviderComponent
+  m_EditorClassIdentifier: 
+  component:
+    SpriteRenderer: {fileID: 0}
 --- !u!114 &-1786079539220966530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +93,9 @@ MonoBehaviour:
   m_Name: HealthComponent
   m_EditorClassIdentifier: 
   component:
-    HealthValue: 0
+    HealthMaxValue: 0
+    HealthCurrentValue: 0
+    HealthStartValue: 0
 --- !u!114 &-1613578690804905361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +111,23 @@ MonoBehaviour:
   component:
     Animator: {fileID: 0}
     Activated: 0
+--- !u!114 &-1464108569878742025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a78ee19be5b63d41b9a9be5f3fb06e5, type: 3}
+  m_Name: MovementComponent
+  m_EditorClassIdentifier: 
+  component:
+    MoveSpeed: 10
+    JumpSpeed: 20
+    JumpAbort: 5
+    Deceleration: 50
 --- !u!114 &-763986750029928466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +142,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     Rigidbody: {fileID: 0}
+--- !u!114 &-31753520491190185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135cb4f985497641b79612bd71c2c24, type: 3}
+  m_Name: AnimationComponent
+  m_EditorClassIdentifier: 
+  component:
+    MoveSpeed: 5
+    JumpSpeed: 10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,20 +171,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holder:
     components:
+    - {fileID: -31753520491190185}
+    - {fileID: -1613578690804905361}
+    - {fileID: 6395767659231856102}
+    - {fileID: -6887442264072377200}
+    - {fileID: -1786079539220966530}
     - {fileID: 5185694778253244611}
-    - {fileID: -6519394471030989733}
+    - {fileID: -1464108569878742025}
+    - {fileID: -3095166590408388248}
     - {fileID: -763986750029928466}
+    - {fileID: -3031660863935327095}
     - {fileID: 3792341975893071904}
     - {fileID: -6378800286627206571}
-    - {fileID: -2645892502752733909}
-    - {fileID: -1613578690804905361}
-    - {fileID: -1786079539220966530}
     systems:
-    - {fileID: 5564576959092918103}
     - {fileID: -3526941384538086773}
-    - {fileID: 6792076631922853117}
-    - {fileID: 7947835364964422154}
     - {fileID: 650276490960819225}
+    - {fileID: 5564576959092918103}
+    - {fileID: 6792076631922853117}
     Parent: {fileID: 11400000}
   containerIndex: 1429482425
 --- !u!114 &650276490960819225
@@ -192,6 +240,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba92c4a090a094be8a020fb4711876bd, type: 3}
   m_Name: CharacterMovementSystem
   m_EditorClassIdentifier: 
+--- !u!114 &6395767659231856102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d859462f71aff47976172940bd54df, type: 3}
+  m_Name: CharacterTagComponent
+  m_EditorClassIdentifier: 
 --- !u!114 &6792076631922853117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,3 +276,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0595294df5fb64a48bb99030e34f3f54, type: 3}
   m_Name: CharacterDamageSystem
   m_EditorClassIdentifier: 
+  TypeIndex: -213353854
+  system:
+    typeHashCode: -1
+    <Owner>k__BackingField:
+      ID: 
+      IsRegistered: 0
+      IsInited: 0
+      IsAlive: 0
+      IsPaused: 0
+      IsDisposed: 0
+      Index: 0
+      IsDirty: 0
+    <IsDisposed>k__BackingField: 0

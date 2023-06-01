@@ -58,13 +58,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holder:
     components:
-    - {fileID: 567032744130984879}
+    - {fileID: -2510391043272923716}
     - {fileID: -9163420351521507562}
     - {fileID: -4286964671383981768}
-    - {fileID: -2510391043272923716}
+    - {fileID: 567032744130984879}
     systems:
     - {fileID: 158363051810776739}
-    - {fileID: 3409756683433577263}
     Parent: {fileID: 11400000}
   containerIndex: -2023033285
 --- !u!114 &158363051810776739
@@ -97,15 +96,3 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
---- !u!114 &3409756683433577263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26649db021442b64caa353397b878d9f, type: 3}
-  m_Name: PlatformCatchSystem
-  m_EditorClassIdentifier: 

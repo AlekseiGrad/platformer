@@ -6,18 +6,13 @@ using UnityEngine;
 namespace Components
 {
     [Serializable][Documentation(Doc.NONE, "")]
-    public sealed class Rigidbody2DProviderComponent : BaseComponent, IHaveActor, IInitable
+    public sealed class SpriteRendererProviderComponent : BaseComponent, IHaveActor, IInitable
     {
-
-        public Rigidbody2D Rigidbody;
+        public SpriteRenderer SpriteRenderer;
         public Actor Actor { get; set; }
-        
-        
         public void Init()
         {
-            Rigidbody = Actor.GetComponent<Rigidbody2D>();
+            SpriteRenderer = Actor.GetComponent<SpriteRenderer>();
         }
-
-        
     }
 }
