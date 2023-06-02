@@ -15,6 +15,8 @@ namespace Systems
         private float offset;
         private float speed;
 
+        private Vector2 initPosition;
+
         public override void InitSystem()
         {
             rigidbody2D = Owner.GetComponent<Rigidbody2DProviderComponent>().Rigidbody;

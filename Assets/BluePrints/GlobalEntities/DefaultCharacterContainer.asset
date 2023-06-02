@@ -126,7 +126,7 @@ MonoBehaviour:
   component:
     MoveSpeed: 10
     JumpSpeed: 20
-    JumpAbort: 5
+    JumpAbort: 10
     Deceleration: 50
 --- !u!114 &-763986750029928466
 MonoBehaviour:

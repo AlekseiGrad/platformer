@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3145408685593142212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c0b28feff6cfa468591f505938205b, type: 3}
+  m_Name: EnemyHolderComponent
+  m_EditorClassIdentifier: 
+  component:
+    Container: {fileID: 11400000, guid: 849abf17906d4ac4aa96fdb12b8e042f, type: 2}
+--- !u!114 &-2184213960008389984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67da135e490dc5248999c1f83bd13e12, type: 3}
+  m_Name: SpawnEnemySystem
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,23 +41,12 @@ MonoBehaviour:
   holder:
     components:
     - {fileID: 1831587987499860527}
+    - {fileID: -3145408685593142212}
     systems:
     - {fileID: 6738994897447534930}
-    - {fileID: 1453828310008740942}
+    - {fileID: -2184213960008389984}
     Parent: {fileID: 11400000}
   containerIndex: 1594580010
---- !u!114 &1453828310008740942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f49998da3657ee45a99c2e28138eb69, type: 3}
-  m_Name: DeathSystem
-  m_EditorClassIdentifier: 
 --- !u!114 &1831587987499860527
 MonoBehaviour:
   m_ObjectHideFlags: 0

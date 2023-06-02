@@ -1041,4 +1041,4 @@ MonoBehaviour:
     guid: 12500e4f-bb1c-49ac-979d-a0025defa91a
     worldIndex: 0
     iD: Chomper
-  actorContainer: {fileID: 0}
+  actorContainer: {fileID: 11400000, guid: 849abf17906d4ac4aa96fdb12b8e042f, type: 2}

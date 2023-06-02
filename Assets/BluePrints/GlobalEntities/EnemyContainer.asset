@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7670221795757886037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fade2adf75131a4684c696692bac340, type: 3}
+  m_Name: EnemyBehaviourSystem
+  m_EditorClassIdentifier: 
+  system:
+    patrolRadius: 3
+    chaseDistance: 7
+    attackDistance: 1
+    moveSpeed: 3
 --- !u!114 &-6353798235492050539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,6 +73,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     Rigidbody: {fileID: 0}
+--- !u!114 &-292283489711284963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a922c854947f946a60dd37689b3d1d, type: 3}
+  m_Name: EnemyBehaviourComponent
+  m_EditorClassIdentifier: 
+  component:
+    IsChasing: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,10 +105,10 @@ MonoBehaviour:
     - {fileID: -1953706811067908256}
     - {fileID: 964722383453334777}
     - {fileID: -1865051127833423728}
+    - {fileID: -292283489711284963}
     systems:
-    - {fileID: 7852613994870418824}
     - {fileID: -6353798235492050539}
-    - {fileID: -6257843891840116403}
+    - {fileID: -7670221795757886037}
     Parent: {fileID: 11400000}
   containerIndex: 2069223362
 --- !u!114 &964722383453334777
@@ -93,7 +124,9 @@ MonoBehaviour:
   m_Name: HealthComponent
   m_EditorClassIdentifier: 
   component:
-    HealthValue: 0
+    HealthMaxValue: 0
+    HealthCurrentValue: 0
+    HealthStartValue: 0
 --- !u!114 &5339833699972847314
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ namespace Systems
         }
 
         public void CommandGlobalReact(DefaultCharacterSpawnCommand command)
-        { 
+        {
             isTargetInitialized = true;
             target = 
                 Owner
