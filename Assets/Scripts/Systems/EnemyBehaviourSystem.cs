@@ -4,6 +4,7 @@ using HECSFramework.Unity;
 using HECSFramework.Core;
 using UnityEngine;
 using Components;
+using Cysharp.Threading.Tasks;
 
 namespace Systems
 {
@@ -15,17 +16,12 @@ namespace Systems
         private MovementComponent movementComponent;
         private MoveVectorComponent moveVectorComponent;
         private EnemyComponent enemyComponent;
-        private EnemyBehaviourComponent enemyBehaviourComponent;
+        private AttackComponent attackComponent;
         private Rigidbody2D rigidbody2D;
-        public float patrolRadius = 4f;
-        public float chaseDistance = 4f;
-        public float attackDistance = 1f;
-        public float moveSpeed = 3f;
-        private Vector2 startingPosition;
         private UnityTransformComponent enemyTransformComponent;
+        private UnityTransformComponent targetTransformComponent;
 
         private State currentState;
-        private UnityTransformComponent targetTransformComponent;
         private bool isCharacterInitialized;
 
         private enum State
@@ -43,8 +39,8 @@ namespace Systems
             movementComponent = Owner.GetComponent<MovementComponent>();
             moveVectorComponent = Owner.GetComponent<MoveVectorComponent>();
             enemyComponent = Owner.GetComponent<EnemyComponent>();
-            enemyBehaviourComponent = Owner.GetComponent<EnemyBehaviourComponent>();
             enemyTransformComponent = Owner.GetComponent<UnityTransformComponent>();
+            attackComponent = Owner.GetComponent<AttackComponent>();
         }
 
         public void FixedUpdateLocal()
@@ -60,14 +56,14 @@ namespace Systems
                     ChasePlayer();
                     break;
                 case State.Attack:
-                    Attack();
+                    TryAttack();
                     break;
             }
         }
         
         public void CommandGlobalReact(EnemySpawnCommand command)
         {
-            startingPosition = Owner.GetComponent<UnityTransformComponent>().Transform.position;
+            moveVectorComponent.initialPosition = Owner.GetComponent<UnityTransformComponent>().Transform.position;
             currentState = State.Patrol;
         }
 
@@ -80,14 +76,14 @@ namespace Systems
 
         private void Patrol()
         {
-            var x = startingPosition.x + Mathf.PingPong(Time.time *moveSpeed, patrolRadius * 2) - patrolRadius;
+            var x = moveVectorComponent.initialPosition.x + Mathf.PingPong(Time.time * movementComponent.MoveSpeed, enemyComponent.PatrolRadius * 2) - enemyComponent.PatrolRadius;
             rigidbody2D.velocity = new Vector2(x - enemyTransformComponent.Transform.position.x, rigidbody2D.velocity.y);
 
             if (isCharacterInitialized)
             {
                 var distanceToPlayer = Vector2.Distance(enemyTransformComponent.Transform.position, targetTransformComponent.Transform.position);
 
-                if (distanceToPlayer < chaseDistance)
+                if (distanceToPlayer < enemyComponent.ChaseRadius)
                 {
                     currentState = State.Chase;
                 }
@@ -97,26 +93,55 @@ namespace Systems
         private void ChasePlayer()
         {
             var distanceToPlayer = Vector2.Distance(enemyTransformComponent.Transform.position, targetTransformComponent.Transform.position);
-            var distanceToStart = Vector2.Distance(enemyTransformComponent.Transform.position, startingPosition);
+            var distanceToStart = Vector2.Distance(enemyTransformComponent.Transform.position, moveVectorComponent.initialPosition);
 
-            if (distanceToPlayer > chaseDistance && distanceToStart < patrolRadius)
+            if (distanceToPlayer > enemyComponent.ChaseRadius && distanceToStart < enemyComponent.PatrolRadius)
             {
                 currentState = State.Patrol;
                 return;
             }
 
-            rigidbody2D.velocity = new Vector2(Mathf.Sign(targetTransformComponent.Transform.position.x - enemyTransformComponent.Transform.position.x) * moveSpeed,
+            rigidbody2D.velocity = new Vector2(Mathf.Sign(targetTransformComponent.Transform.position.x - enemyTransformComponent.Transform.position.x) * movementComponent.MoveSpeed,
                 rigidbody2D.velocity.y);
 
-            if (distanceToPlayer < attackDistance)
+            if (distanceToPlayer < attackComponent.Distance)
             {
-                //currentState = State.Attack;
+                currentState = State.Attack;
             }
+        }
+
+        private void TryAttack()
+        {
+            if (attackComponent.IsCanAttack)
+            {
+                Attack();
+                ReloadAttack();
+            }
+            currentState = State.Chase;
         }
 
         private void Attack()
         {
-            Debug.Log("attack");
+            Owner.Command(new TriggerAnimationCommand()
+            {
+                Index = AnimParametersMap.MeleeAttack
+            });
+            var targets = Physics2D.OverlapCircleAll(rigidbody2D.position, attackComponent.Distance, attackComponent.AttackTargetMask);
+
+            foreach (var target in targets)
+            {
+                target.GetComponent<Actor>().Command(new DealDamageCommand()
+                {
+                    Value = attackComponent.Value
+                });
+            }
+        }
+
+        private async void ReloadAttack()
+        {
+            attackComponent.IsCanAttack = false;
+            await UniTask.Delay(attackComponent.Cooldown);
+            attackComponent.IsCanAttack = true;
         }
     }
 }

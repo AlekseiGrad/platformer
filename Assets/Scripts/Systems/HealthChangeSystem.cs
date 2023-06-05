@@ -2,6 +2,7 @@ using System;
 using Commands;
 using HECSFramework.Core;
 using Components;
+using UnityEngine;
 
 namespace Systems
 {
@@ -13,14 +14,17 @@ namespace Systems
         public override void InitSystem()
         {
             healthComponent = Owner.GetComponent<HealthComponent>();
+            healthComponent.HealthCurrentValue = healthComponent.HealthStartValue;
         }
 
         public void CommandReact(DealDamageCommand command)
         {
+            Debug.Log("take dmg");
             healthComponent.HealthCurrentValue -= command.Value;
-            if (healthComponent.HealthCurrentValue < 0)
+            
+            if (healthComponent.HealthCurrentValue <= 0)
             {
-                Owner.Command(new IsDeadCommand());
+                Owner.HecsDestroy();
             }
         }
     }

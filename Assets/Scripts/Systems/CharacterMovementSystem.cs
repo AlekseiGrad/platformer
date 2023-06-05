@@ -53,7 +53,7 @@ namespace Systems
                 if (moveVectorComponent.IsGrounded)
                 {
                     moveVectorComponent.MoveVector =
-                        (Vector2.up + moveVectorComponent.MoveVector.normalized) *
+                        (Vector2.up + new Vector2(moveVectorComponent.MoveVector.normalized.x, 0)) *
                         movementComponent.JumpSpeed;
                 }
             }
@@ -84,7 +84,14 @@ namespace Systems
 
         private void UpdateJump()
         {
-            if (moveVectorComponent.MoveVector.y > 0) moveVectorComponent.MoveVector.y -= movementComponent.JumpAbort;
+            if (moveVectorComponent.MoveVector.y > 0)
+            {
+                moveVectorComponent.MoveVector.y -= movementComponent.JumpAbort;
+                if (moveVectorComponent.MoveVector.y < 0)
+                {
+                    moveVectorComponent.MoveVector.y = 0;
+                }
+            }
         }
     }
 }

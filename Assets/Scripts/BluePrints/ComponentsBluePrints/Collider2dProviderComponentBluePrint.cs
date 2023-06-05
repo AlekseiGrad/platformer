@@ -1,0 +1,1 @@
+using Components;using System;using System.Collections.Generic;namespace HECSFramework.Unity{	public class Collider2dProviderComponentBluePrint : ComponentBluePrintContainer<Collider2dProviderComponent>	{	}}
