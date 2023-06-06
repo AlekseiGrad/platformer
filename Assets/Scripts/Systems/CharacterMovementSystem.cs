@@ -1,7 +1,6 @@
 using System;
 using Commands;
 using Components;
-using HECSFramework.Unity;
 using HECSFramework.Core;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
@@ -10,12 +9,11 @@ namespace Systems
 {
     [Serializable]
     [Documentation(Doc.NONE, "")]
-    public sealed class CharacterMovementSystem : BaseSystem, IReactCommand<InputCommand>, IFixedUpdatable
+    public sealed class CharacterMovementSystem : BaseSystem, IFixedUpdatable, IReactCommand<InputCommand>
     {
         private Rigidbody2D rigidbody2D;
         private MovementComponent movementComponent;
         private GroundCheckComponent groundCheckComponent;
-
         private MoveVectorComponent moveVectorComponent;
 
         public override void InitSystem()
@@ -38,13 +36,15 @@ namespace Systems
         {
             if (InputIdentifierMap.Move == command.Index)
             {
-                var vector = command.Context.ReadValue<Vector2>();
+                var vector = command.Context.ReadValue<Vector2>().normalized;
 
-                if (vector.y > 0) return;
-                
+                moveVectorComponent.MoveVector = vector;
+
+                if (moveVectorComponent.MoveVector.y > 0) return;
+
                 if (moveVectorComponent.IsGrounded)
                 {
-                    moveVectorComponent.MoveVector.x = vector.normalized.x * movementComponent.MoveSpeed;
+                    moveVectorComponent.MoveVector.x *= movementComponent.MoveSpeed;
                 }
             }
 
@@ -53,8 +53,7 @@ namespace Systems
                 if (moveVectorComponent.IsGrounded)
                 {
                     moveVectorComponent.MoveVector =
-                        (Vector2.up + new Vector2(moveVectorComponent.MoveVector.normalized.x, 0)) *
-                        movementComponent.JumpSpeed;
+                        new Vector2(moveVectorComponent.MoveVector.x, movementComponent.JumpSpeed);
                 }
             }
         }
@@ -64,7 +63,10 @@ namespace Systems
             if (moveVectorComponent.MoveVector.x > 0)
             {
                 moveVectorComponent.MoveVector.x -= movementComponent.Deceleration * Time.fixedDeltaTime;
-                if (moveVectorComponent.MoveVector.x < 0) moveVectorComponent.MoveVector.x = 0;
+                if (moveVectorComponent.MoveVector.x < 0)
+                {
+                    moveVectorComponent.MoveVector.x = 0;
+                }
             }
             else if (moveVectorComponent.MoveVector.x < 0)
             {
@@ -86,7 +88,7 @@ namespace Systems
         {
             if (moveVectorComponent.MoveVector.y > 0)
             {
-                moveVectorComponent.MoveVector.y -= movementComponent.JumpAbort;
+                moveVectorComponent.MoveVector.y -= movementComponent.JumpAbort * Time.fixedDeltaTime;
                 if (moveVectorComponent.MoveVector.y < 0)
                 {
                     moveVectorComponent.MoveVector.y = 0;

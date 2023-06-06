@@ -25,10 +25,12 @@ namespace Systems
 
         public void UpdateLocal()
         {
+            UpdateGrounded();
             UpdateRunning();
             UpdateCrouching();
             UpdateJumping();
-            UpdateGrounded();
+            UpdateFacing();
+            
         }
 
         private void UpdateRunning()
@@ -46,7 +48,8 @@ namespace Systems
         {
             Owner.Command(new BoolAnimationCommand()
                 {
-                    Index = AnimParametersMap.Crouching, Value =  moveVectorComponent.IsGrounded && moveVectorComponent.MoveVector.y < -2
+                    Index = AnimParametersMap.Crouching,
+                    Value = moveVectorComponent.MoveVector.y < 0 && moveVectorComponent.IsGrounded
                 });
         }
 
@@ -76,6 +79,7 @@ namespace Systems
 
         private void UpdateFacing()
         {
+            spriteRenderer.flipX = moveVectorComponent.MoveVector.x <= 0;
         }
     }
 }

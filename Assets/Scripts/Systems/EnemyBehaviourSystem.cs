@@ -10,8 +10,8 @@ namespace Systems
 {
     [Serializable]
     [Documentation(Doc.NONE, "")]
-    public sealed class EnemyBehaviourSystem : BaseSystem, IFixedUpdatable, IReactGlobalCommand<EnemySpawnCommand>,
-        IReactGlobalCommand<DefaultCharacterSpawnCommand>
+    public sealed class EnemyBehaviourSystem : BaseSystem,IUpdatable, IFixedUpdatable, IReactGlobalCommand<EnemySpawnCommand>,
+        IReactGlobalCommand<DefaultCharacterSpawnCommand>, IReactCommand<AnimationEventCommand>
     {
         private MovementComponent movementComponent;
         private MoveVectorComponent moveVectorComponent;
@@ -45,20 +45,7 @@ namespace Systems
 
         public void FixedUpdateLocal()
         {
-            switch (currentState)
-            {
-                case State.NonInitialized:
-                    break;
-                case State.Patrol:
-                    Patrol();
-                    break;
-                case State.Chase:
-                    ChasePlayer();
-                    break;
-                case State.Attack:
-                    TryAttack();
-                    break;
-            }
+            rigidbody2D.velocity = moveVectorComponent.MoveVector;
         }
         
         public void CommandGlobalReact(EnemySpawnCommand command)
@@ -77,7 +64,7 @@ namespace Systems
         private void Patrol()
         {
             var x = moveVectorComponent.initialPosition.x + Mathf.PingPong(Time.time * movementComponent.MoveSpeed, enemyComponent.PatrolRadius * 2) - enemyComponent.PatrolRadius;
-            rigidbody2D.velocity = new Vector2(x - enemyTransformComponent.Transform.position.x, rigidbody2D.velocity.y);
+            moveVectorComponent.MoveVector.x = x - enemyTransformComponent.Transform.position.x;
 
             if (isCharacterInitialized)
             {
@@ -101,8 +88,9 @@ namespace Systems
                 return;
             }
 
-            rigidbody2D.velocity = new Vector2(Mathf.Sign(targetTransformComponent.Transform.position.x - enemyTransformComponent.Transform.position.x) * movementComponent.MoveSpeed,
-                rigidbody2D.velocity.y);
+            moveVectorComponent.MoveVector.x =
+                Mathf.Sign(targetTransformComponent.Transform.position.x -
+                           enemyTransformComponent.Transform.position.x) * movementComponent.MoveSpeed;
 
             if (distanceToPlayer < attackComponent.Distance)
             {
@@ -112,21 +100,23 @@ namespace Systems
 
         private void TryAttack()
         {
+            moveVectorComponent.MoveVector = Vector2.zero;
+            
             if (attackComponent.IsCanAttack)
             {
-                Attack();
+                Owner.Command(new TriggerAnimationCommand()
+                {
+                    Index = AnimParametersMap.MeleeAttack
+                });
                 ReloadAttack();
             }
+
             currentState = State.Chase;
         }
 
         private void Attack()
         {
-            Owner.Command(new TriggerAnimationCommand()
-            {
-                Index = AnimParametersMap.MeleeAttack
-            });
-            var targets = Physics2D.OverlapCircleAll(rigidbody2D.position, attackComponent.Distance, attackComponent.AttackTargetMask);
+            var targets = Physics2D.OverlapCircleAll(rigidbody2D.position + attackComponent.Offset, attackComponent.Distance, attackComponent.TargetMask);
 
             foreach (var target in targets)
             {
@@ -142,6 +132,36 @@ namespace Systems
             attackComponent.IsCanAttack = false;
             await UniTask.Delay(attackComponent.Cooldown);
             attackComponent.IsCanAttack = true;
+        }
+
+        public void CommandReact(AnimationEventCommand command)
+        {
+            if (command.Id == AnimationEventIdentifierMap.EnemyAttackAnimationEventIdentifier)
+            {
+                Attack();
+            }
+            if (command.Id == AnimationEventIdentifierMap.EnemyEndAttackAnimationEventIdentifier)
+            {
+                currentState = State.Chase;
+            }
+        }
+
+        public void UpdateLocal()
+        {
+            switch (currentState)
+            {
+                case State.NonInitialized:
+                    break;
+                case State.Patrol:
+                    Patrol();
+                    break;
+                case State.Chase:
+                    ChasePlayer();
+                    break;
+                case State.Attack:
+                    TryAttack();
+                    break;
+            }
         }
     }
 }

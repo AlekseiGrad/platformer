@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Name: GroundCheckComponent
   m_EditorClassIdentifier: 
   component:
-    GroundDistance: 0.1
+    GroundDistance: 0.15
     GroundedMask:
       serializedVersion: 2
       m_Bits: 2147483648
@@ -65,9 +65,11 @@ MonoBehaviour:
     Speed: 0
     Cooldown: 1000
     Value: 50
-    AttackTargetMask:
+    TargetMask:
       serializedVersion: 2
       m_Bits: 512
+    Offset: {x: 1, y: 0}
+    Direction: 1
 --- !u!114 &-3526941384538086773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,8 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     MoveSpeed: 10
-    JumpSpeed: 20
-    JumpAbort: 10
+    JumpSpeed: 60
+    JumpAbort: 120
     Deceleration: 50
 --- !u!114 &-763986750029928466
 MonoBehaviour:

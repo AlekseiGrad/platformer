@@ -1,13 +1,10 @@
 using System;
-using System.Threading.Tasks;
 using Commands;
 using HECSFramework.Unity;
 using HECSFramework.Core;
 using UnityEngine;
 using Components;
 using Cysharp.Threading.Tasks;
-using Helpers;
-using Unity.VisualScripting;
 
 namespace Systems
 {
@@ -16,10 +13,13 @@ namespace Systems
     {
         private AttackComponent attackComponent;
         private Rigidbody2D rigidbody2D;
+        private MoveVectorComponent moveVectorComponent;
+        
         
         public override void InitSystem()
         {
             attackComponent = Owner.GetComponent<AttackComponent>();
+            moveVectorComponent = Owner.GetComponent<MoveVectorComponent>();
             rigidbody2D = Owner.GetComponent<Rigidbody2DProviderComponent>().Rigidbody;
         }
 
@@ -35,7 +35,7 @@ namespace Systems
         {
             if (AnimationEventIdentifierMap.AttackAnimationEventIdentifier == command.Id)
             {
-                At();
+                Attack();
             }
         }
 
@@ -43,23 +43,20 @@ namespace Systems
         {
             if (attackComponent.IsCanAttack)
             {
-                Attack();
+                Owner.Command(new TriggerAnimationCommand()
+                {
+                    Index = AnimParametersMap.MeleeAttack
+                });
                 AttackCooldown();
             }
         }
+        
 
         private void Attack()
         {
-            Owner.Command(new TriggerAnimationCommand()
-            {
-                Index = AnimParametersMap.MeleeAttack
-            });
-        }
-
-        private void At()
-        {
-            var targets = Physics2D.OverlapCircleAll(rigidbody2D.position, attackComponent.Distance, attackComponent.AttackTargetMask);
-
+            UpdateAttackDirection();
+            var targets = Physics2D.OverlapCircleAll(rigidbody2D.position , attackComponent.Distance, attackComponent.TargetMask);
+            
             foreach (var target in targets)
             {
                 target.GetComponent<Actor>().Command(new DealDamageCommand()
@@ -74,6 +71,11 @@ namespace Systems
             attackComponent.IsCanAttack = false;
             await UniTask.Delay(attackComponent.Cooldown);
             attackComponent.IsCanAttack = true;
+        }
+
+        private void UpdateAttackDirection()
+        {
+            attackComponent.Direction = moveVectorComponent.MoveVector.x > 0 ? 1 : -1;
         }
 
        

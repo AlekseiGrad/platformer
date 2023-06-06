@@ -1,5 +1,4 @@
 using HECSFramework.Core;
-using HECSFramework.Unity;
 using System;
 using UnityEngine;
 
@@ -13,7 +12,9 @@ namespace Components
         public float Speed;
         public int Cooldown;
         public float Value;
-        public LayerMask AttackTargetMask;
+        public LayerMask TargetMask;
+        public Vector2 Offset;
+        public int Direction;
 
     }
 }

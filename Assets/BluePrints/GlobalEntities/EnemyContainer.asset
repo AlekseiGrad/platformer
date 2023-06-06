@@ -103,6 +103,18 @@ MonoBehaviour:
   component:
     Animator: {fileID: 0}
     Activated: 0
+--- !u!114 &-2557182517110286600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2312ffea4b8a5864dbb28fed3589cfea, type: 3}
+  m_Name: EnemyAnimationSystem
+  m_EditorClassIdentifier: 
 --- !u!114 &-1953706811067908256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +169,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component:
     IsChasing: 0
+--- !u!114 &-278773255695037306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135cb4f985497641b79612bd71c2c24, type: 3}
+  m_Name: AnimationComponent
+  m_EditorClassIdentifier: 
+  component:
+    MoveSpeed: 0
+    JumpSpeed: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,10 +208,13 @@ MonoBehaviour:
     - {fileID: -1865051127833423728}
     - {fileID: -1953706811067908256}
     - {fileID: 5339833699972847314}
+    - {fileID: -278773255695037306}
+    - {fileID: 7449406167364411620}
     systems:
     - {fileID: -6353798235492050539}
     - {fileID: -7670221795757886037}
     - {fileID: -323241208440273420}
+    - {fileID: -2557182517110286600}
     Parent: {fileID: 11400000}
   containerIndex: 2069223362
 --- !u!114 &964722383453334777
@@ -221,6 +251,20 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+--- !u!114 &7449406167364411620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3250d917c519a4b88198d851cebdea, type: 3}
+  m_Name: SpriteRendererProviderComponent
+  m_EditorClassIdentifier: 
+  component:
+    SpriteRenderer: {fileID: 0}
 --- !u!114 &7852613994870418824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +295,8 @@ MonoBehaviour:
     Speed: 0
     Cooldown: 2
     Value: 0
-    AttackTargetMask:
+    TargetMask:
       serializedVersion: 2
-      m_Bits: 8192
+      m_Bits: 0
+    Offset: {x: 0, y: 0}
+    Direction: 0

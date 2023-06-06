@@ -96,15 +96,16 @@ AnimationClip:
   - time: 0.41666666
     functionName: SendAnimationEvent
     data: 
-    objectReferenceParameter: {fileID: 11400000, guid: 8b8ff29f02bd41e478d92af07e77a18a,
+    objectReferenceParameter: {fileID: 11400000, guid: 7b7ab8da7d343a74b9d9db0ee3610b5f,
       type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.75
-    functionName: EndAttack
+    functionName: SendAnimationEvent
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11400000, guid: fa56c188e0331ff4b816c7cec5b9bdc5,
+      type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
